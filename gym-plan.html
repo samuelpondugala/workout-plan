@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gym Fat Loss Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f2ed;
+    --surface: #ece8e1;
+    --card: #ffffff;
+    --border: #ddd9d2;
+    --ink: #1a1714;
+    --muted: #8a8278;
+    --fire: #d94f1e;
+    --fire-light: #fff0eb;
+    --teal: #1a7a6e;
+    --teal-light: #e6f4f2;
+    --gold: #c49a2b;
+    --gold-light: #fdf6e3;
+    --back-accent: #6b3fa0;
+    --back-light: #f3eeff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* DIAGONAL HEADER */
+  .hero {
+    background: var(--ink);
+    color: #fff;
+    padding: 48px 32px 80px;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .hero-content {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--fire);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(44px, 9vw, 88px);
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -1px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--fire);
+    display: block;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+
+  .hs {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hs-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .hs-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  /* BACK WARNING BANNER */
+  .back-banner {
+    max-width: 860px;
+    margin: -28px auto 0;
+    padding: 0 24px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .back-alert {
+    background: var(--back-accent);
+    color: #fff;
+    border-radius: 8px;
+    padding: 16px 22px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    box-shadow: 0 8px 32px rgba(107,63,160,0.25);
+  }
+
+  .ba-icon { font-size: 22px; flex-shrink: 0; }
+  .ba-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .ba-text { font-size: 13px; opacity: 0.85; line-height: 1.55; }
+
+  /* MAIN CONTENT */
+  .main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+
+  /* WEEK OVERVIEW */
+  .week-strip {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 36px;
+    margin-top: 24px;
+  }
+
+  .ws-day {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 6px;
+    text-align: center;
+  }
+
+  .ws-day.active { border-color: var(--fire); background: var(--fire-light); }
+  .ws-day.back { border-color: var(--back-accent); background: var(--back-light); }
+  .ws-day.rest { opacity: 0.5; }
+
+  .ws-name {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .ws-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .ws-day.active .ws-name { color: var(--fire); }
+  .ws-day.back .ws-name { color: var(--back-accent); }
+
+  /* SECTION */
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 36px 0 18px;
+  }
+
+  .sec-head h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--ink);
+  }
+
+  .sec-line {
+    flex: 1;
+    height: 1.5px;
+    background: var(--border);
+  }
+
+  /* DAY CARDS */
+  .day-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .day-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+  .day-card.back-day { border-color: rgba(107,63,160,0.3); }
+
+  .day-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 22px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .day-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--border);
+    line-height: 1;
+    min-width: 48px;
+  }
+
+  .day-info .day-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .day-info .day-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+    font-weight: 300;
+  }
+
+  .day-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .tag-fire { background: var(--fire-light); color: var(--fire); }
+  .tag-teal { background: var(--teal-light); color: var(--teal); }
+  .tag-gold { background: var(--gold-light); color: var(--gold); }
+  .tag-back { background: var(--back-light); color: var(--back-accent); }
+
+  .chevron {
+    color: var(--muted);
+    font-size: 14px;
+    transition: transform 0.25s ease;
+  }
+
+  .day-card.open .chevron { transform: rotate(180deg); }
+
+  /* DAY BODY */
+  .day-body {
+    display: none;
+    padding: 0 22px 24px;
+  }
+
+  .day-card.open .day-body { display: block; }
+
+  /* TIME BAR */
+  .time-bar-wrap { margin-bottom: 20px; }
+
+  .time-bar {
+    display: flex;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    gap: 2px;
+  }
+
+  .tb-seg { border-radius: 2px; }
+
+  .time-labels {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .tl {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  .tl-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+  }
+
+  /* PHASE */
+  .phase {
+    margin-bottom: 24px;
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    border-top: 1.5px solid var(--border);
+    padding-top: 16px;
+  }
+
+  .phase-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .phase-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    flex: 1;
+  }
+
+  .phase-dur {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  /* EXERCISE TABLE */
+  .ex-table { width: 100%; border-collapse: collapse; }
+
+  .ex-row {
+    border-bottom: 1px solid var(--surface);
+    transition: background 0.12s;
+  }
+
+  .ex-row:last-child { border-bottom: none; }
+  .ex-row:hover { background: var(--surface); }
+
+  .ex-row td {
+    padding: 10px 8px;
+    vertical-align: top;
+    font-size: 13px;
+  }
+
+  .ex-row td:first-child {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--border);
+    width: 24px;
+    padding-left: 0;
+  }
+
+  .ex-name-cell { font-weight: 500; color: var(--ink); }
+  .ex-detail-cell { color: var(--muted); font-weight: 300; font-size: 12px; }
+  .ex-note-cell { font-size: 11px; color: var(--teal); font-style: italic; }
+
+  .ex-sets {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--fire);
+    white-space: nowrap;
+    text-align: right;
+    padding-right: 0;
+  }
+
+  .back-row .ex-name-cell { color: var(--back-accent); font-weight: 600; }
+
+  /* MACHINE BADGE */
+  .machine {
+    display: inline-block;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    padding: 1px 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--muted);
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  /* INFO BOXES */
+  .infobox {
+    border-radius: 6px;
+    padding: 13px 15px;
+    margin-top: 14px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .infobox.fire { background: var(--fire-light); color: #7a2a0e; }
+  .infobox.back { background: var(--back-light); color: #3d2060; }
+  .infobox.teal { background: var(--teal-light); color: #0e3f39; }
+  .infobox strong { font-weight: 600; }
+
+  /* REST TIMER INDICATOR */
+  .rest-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    background: var(--gold-light);
+    color: var(--gold);
+    border-radius: 3px;
+    margin-top: 10px;
+  }
+
+  /* WEEKEND GRID */
+  .weekend-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .wknd-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .wknd-day {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .wknd-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .wknd-item {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--surface);
+    font-size: 13px;
+    align-items: flex-start;
+  }
+
+  .wknd-item:last-child { border-bottom: none; }
+  .wknd-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--fire); margin-top: 6px; flex-shrink: 0; }
+  .wknd-text { color: #555; line-height: 1.5; }
+  .wknd-text strong { color: var(--ink); }
+
+  /* NUTRITION */
+  .nut-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .nut-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .nut-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .nut-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--surface);
+    font-size: 12px;
+  }
+
+  .nut-row:last-child { border-bottom: none; }
+  .nut-label { color: var(--muted); font-weight: 300; }
+  .nut-val { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: var(--fire); }
+
+  /* PROGRESS */
+  .milestone {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--surface);
+    align-items: flex-start;
+  }
+
+  .milestone:last-child { border-bottom: none; }
+
+  .ms-time {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--teal);
+    min-width: 70px;
+    padding-top: 2px;
+  }
+
+  .ms-text { font-size: 13px; color: #555; line-height: 1.55; }
+  .ms-text strong { color: var(--ink); font-weight: 600; }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1.5px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 580px) {
+    .week-strip { grid-template-columns: repeat(4, 1fr); }
+    .nut-grid { grid-template-columns: 1fr; }
+    .weekend-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">// GYM PROTOCOL · MON–FRI · 2 HRS</div>
+    <h1>GYM<em>SHRED</em></h1>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-val">91→75</div><div class="hs-label">kg target</div></div>
+      <div class="hs"><div class="hs-val">5×/wk</div><div class="hs-label">gym sessions</div></div>
+      <div class="hs"><div class="hs-val">Back</div><div class="hs-label">priority fix</div></div>
+      <div class="hs"><div class="hs-val">~5mo</div><div class="hs-label">estimated</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BACK ALERT -->
+<div class="back-banner">
+  <div class="back-alert">
+    <div class="ba-icon">⚠️</div>
+    <div>
+      <div class="ba-title">Lower Back Weakness — This is Your #1 Priority Fix</div>
+      <div class="ba-text">Weak lower back = injury risk on almost every gym exercise. Every session starts with dedicated back activation before anything else. We build it progressively: hyperextensions, cable rows, lat pulldowns, and deadlifts (light, technique only at first). A strong back also makes you look athletic without looking bulky.</div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- WEEK STRIP -->
+  <div class="week-strip">
+    <div class="ws-day active">
+      <div class="ws-name">Mon</div>
+      <div class="ws-label">Back + Cardio</div>
+    </div>
+    <div class="ws-day active">
+      <div class="ws-name">Tue</div>
+      <div class="ws-label">HIIT + Core</div>
+    </div>
+    <div class="ws-day back">
+      <div class="ws-name">Wed</div>
+      <div class="ws-label">Back + Legs</div>
+    </div>
+    <div class="ws-day active">
+      <div class="ws-name">Thu</div>
+      <div class="ws-label">Full Circuit</div>
+    </div>
+    <div class="ws-day active">
+      <div class="ws-name">Fri</div>
+      <div class="ws-label">Upper + Cardio</div>
+    </div>
+    <div class="ws-day rest">
+      <div class="ws-name">Sat</div>
+      <div class="ws-label">Sport / Active</div>
+    </div>
+    <div class="ws-day rest">
+      <div class="ws-name">Sun</div>
+      <div class="ws-label">Rest / Walk</div>
+    </div>
+  </div>
+
+  <!-- DAYS -->
+  <div class="sec-head"><h2>Mon–Fri Gym Sessions</h2><div class="sec-line"></div></div>
+
+  <!-- ===== MONDAY ===== -->
+  <div class="day-card back-day open" onclick="toggle(this)">
+    <div class="day-header">
+      <div class="day-num">01</div>
+      <div class="day-info">
+        <div class="day-name">Monday — Back Focus + Steady Cardio</div>
+        <div class="day-sub">Back activation · Pull movements · Treadmill/Bike finisher</div>
+      </div>
+      <span class="day-tag tag-back">Back Day</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="time-bar-wrap">
+        <div class="time-bar">
+          <div class="tb-seg" style="background:#d94f1e;flex:0.12"></div>
+          <div class="tb-seg" style="background:#6b3fa0;flex:0.25"></div>
+          <div class="tb-seg" style="background:#6b3fa0;flex:0.28"></div>
+          <div class="tb-seg" style="background:#1a7a6e;flex:0.25"></div>
+          <div class="tb-seg" style="background:#c49a2b;flex:0.1"></div>
+        </div>
+        <div class="time-labels">
+          <div class="tl"><div class="tl-dot" style="background:#d94f1e"></div>Warmup 15min</div>
+          <div class="tl"><div class="tl-dot" style="background:#6b3fa0"></div>Back Activation 30min</div>
+          <div class="tl"><div class="tl-dot" style="background:#6b3fa0;opacity:0.6"></div>Pull Work 30min</div>
+          <div class="tl"><div class="tl-dot" style="background:#1a7a6e"></div>Cardio 30min</div>
+          <div class="tl"><div class="tl-dot" style="background:#c49a2b"></div>Cooldown 10min</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#d94f1e"></div>
+          <div class="phase-title">Phase 1 — Warmup (15 min)</div>
+          <div class="phase-dur">15 min</div>
+        </div>
+        <table class="ex-table">
+          <tr class="ex-row">
+            <td>01</td>
+            <td class="ex-name-cell">Treadmill Brisk Walk</td>
+            <td class="ex-detail-cell">Incline 3–4%, pace 5–6 km/h — warms entire body</td>
+            <td class="ex-sets">8 min</td>
+          </tr>
+          <tr class="ex-row">
+            <td>02</td>
+            <td class="ex-name-cell">Cat-Cow Stretch</td>
+            <td class="ex-detail-cell">On mat — mobilises entire spine, critical for lower back</td>
+            <td class="ex-sets">10 reps slow</td>
+          </tr>
+          <tr class="ex-row">
+            <td>03</td>
+            <td class="ex-name-cell">Hip Hinge Practice</td>
+            <td class="ex-detail-cell">Stand, push hips back keeping back flat — teaches safe back movement</td>
+            <td class="ex-sets">15 reps</td>
+          </tr>
+          <tr class="ex-row">
+            <td>04</td>
+            <td class="ex-name-cell">Band Pull-Aparts (or arms only)</td>
+            <td class="ex-detail-cell">Activates rear delts + mid-back before loading</td>
+            <td class="ex-sets">2×15</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#6b3fa0"></div>
+          <div class="phase-title">Phase 2 — Back Activation Circuit (30 min)</div>
+          <div class="phase-dur">30 min</div>
+        </div>
+        <div class="infobox back">
+          <strong>Lower back protocol:</strong> These are therapeutic + strengthening. Use LIGHT weight with perfect form. Never ego-lift here. Lower back responds to volume and consistency, not heavy loads initially.
+        </div>
+        <table class="ex-table" style="margin-top:12px">
+          <tr class="ex-row back-row">
+            <td>01</td>
+            <td>
+              <div class="ex-name-cell">Hyperextension (Back Extension)<span class="machine">machine</span></div>
+              <div class="ex-detail-cell">Squeeze glutes at top, hold 1 sec. Do NOT hyperextend past parallel. This is your lower back rehab + strengthen move.</div>
+            </td>
+            <td class="ex-sets">4×15</td>
+          </tr>
+          <tr class="ex-row back-row">
+            <td>02</td>
+            <td>
+              <div class="ex-name-cell">Seated Cable Row<span class="machine">cable</span></div>
+              <div class="ex-detail-cell">Pull elbows back, squeeze shoulder blades. Sit tall — builds mid-back, removes "slouch". Light-moderate weight.</div>
+            </td>
+            <td class="ex-sets">3×12</td>
+          </tr>
+          <tr class="ex-row back-row">
+            <td>03</td>
+            <td>
+              <div class="ex-name-cell">Lat Pulldown (Wide Grip)<span class="machine">cable</span></div>
+              <div class="ex-detail-cell">Pull to upper chest, lean back slightly. Builds the V-taper and upper back thickness. Do NOT pull behind neck.</div>
+            </td>
+            <td class="ex-sets">3×12</td>
+          </tr>
+          <tr class="ex-row back-row">
+            <td>04</td>
+            <td>
+              <div class="ex-name-cell">Romanian Deadlift (RDL) — Light<span class="machine">barbell/dumbbell</span></div>
+              <div class="ex-detail-cell">Hinge at hips, bar slides down shins, feel hamstring stretch. Keep back flat throughout. This is the king of lower back strengthening — but learn it first.</div>
+              <div class="ex-note-cell">Start with empty bar or 10kg dumbbells. Form over weight always.</div>
+            </td>
+            <td class="ex-sets">3×10</td>
+          </tr>
+          <tr class="ex-row back-row">
+            <td>05</td>
+            <td>
+              <div class="ex-name-cell">Face Pulls<span class="machine">cable</span></div>
+              <div class="ex-detail-cell">Cable at eye level, pull to face with elbows high. Fixes posture, builds rear delts + rotator cuff.</div>
+            </td>
+            <td class="ex-sets">3×15</td>
+          </tr>
+        </table>
+        <div class="rest-tag">⏱ Rest 60–75 sec between sets · No rushing back exercises</div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#6b3fa0;opacity:0.6"></div>
+          <div class="phase-title">Phase 3 — Pull Strength + Negatives (30 min)</div>
+          <div class="phase-dur">30 min</div>
+        </div>
+        <table class="ex-table">
+          <tr class="ex-row">
+            <td>01</td>
+            <td>
+              <div class="ex-name-cell">Assisted Pullup Machine<span class="machine">machine</span></div>
+              <div class="ex-detail-cell">Use counterweight assist. Goal: full ROM pullups. Builds on your 3 partial pullups.</div>
+            </td>
+            <td class="ex-sets">4×8</td>
+          </tr>
+          <tr class="ex-row">
+            <td>02</td>
+            <td>
+              <div class="ex-name-cell">One-Arm Dumbbell Row<span class="machine">dumbbell</span></div>
+              <div class="ex-detail-cell">Knee on bench, pull dumbbell to hip. One of the best back builders possible.</div>
+            </td>
+            <td class="ex-sets">3×12 each</td>
+          </tr>
+          <tr class="ex-row">
+            <td>03</td>
+            <td>
+              <div class="ex-name-cell">Straight-Arm Pulldown<span class="machine">cable</span></div>
+              <div class="ex-detail-cell">Arms straight, pull bar to hips — isolates lats purely</div>
+            </td>
+            <td class="ex-sets">3×15</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#1a7a6e"></div>
+          <div class="phase-title">Phase 4 — Cardio (30 min)</div>
+          <div class="phase-dur">30 min</div>
+        </div>
+        <table class="ex-table">
+          <tr class="ex-row">
+            <td>01</td>
+            <td>
+              <div class="ex-name-cell">Treadmill Incline Walk or Stationary Bike</div>
+              <div class="ex-detail-cell">Moderate intensity — heart rate 130–150 bpm. This is the fat-burning zone after strength work. Your glycogen is partially depleted so body goes to fat faster.</div>
+            </td>
+            <td class="ex-sets">30 min</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TUESDAY ===== -->
+  <div class="day-card" onclick="toggle(this)">
+    <div class="day-header">
+      <div class="day-num">02</div>
+      <div class="day-info">
+        <div class="day-name">Tuesday — HIIT + Core Intensive</div>
+        <div class="day-sub">Cardio machines · HIIT intervals · Complete core circuit</div>
+      </div>
+      <span class="day-tag tag-fire">HIIT</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="time-bar-wrap">
+        <div class="time-bar">
+          <div class="tb-seg" style="background:#d94f1e;flex:0.1"></div>
+          <div class="tb-seg" style="background:#d94f1e;opacity:0.8;flex:0.35"></div>
+          <div class="tb-seg" style="background:#6b3fa0;opacity:0.5;flex:0.15"></div>
+          <div class="tb-seg" style="background:#1a7a6e;flex:0.3"></div>
+          <div class="tb-seg" style="background:#c49a2b;flex:0.1"></div>
+        </div>
+        <div class="time-labels">
+          <div class="tl"><div class="tl-dot" style="background:#d94f1e"></div>Warmup 10min</div>
+          <div class="tl"><div class="tl-dot" style="background:#d94f1e;opacity:0.7"></div>HIIT Intervals 40min</div>
+          <div class="tl"><div class="tl-dot" style="background:#6b3fa0;opacity:0.5"></div>Back Activation 15min</div>
+          <div class="tl"><div class="tl-dot" style="background:#1a7a6e"></div>Core Circuit 30min</div>
+          <div class="tl"><div class="tl-dot" style="background:#c49a2b"></div>Cooldown 10min</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#d94f1e"></div>
+          <div class="phase-title">Phase 1 — Warmup (10 min)</div>
+        </div>
+        <table class="ex-table">
+          <tr class="ex-row"><td>01</td><td class="ex-name-cell">Stationary Bike Easy<span class="machine">bike</span></td><td class="ex-detail-cell">Just loosen up the legs</td><td class="ex-sets">5 min</td></tr>
+          <tr class="ex-row"><td>02</td><td class="ex-name-cell">Joint Circles + Hip Swings</td><td class="ex-detail-cell">Ankle, knee, hips, shoulders</td><td class="ex-sets">5 min</td></tr>
+        </table>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#d94f1e"></div>
+          <div class="phase-title">Phase 2 — HIIT on Machines (40 min)</div>
+        </div>
+        <div class="infobox fire">
+          <strong>HIIT format: 30 sec max effort → 90 sec easy → repeat.</strong> Do 3 machines, 8 rounds each (~15 min per machine). This burns fat for 18–24 hrs after due to EPOC (afterburn). Heart rate should hit 80–90% max in the hard intervals.
+        </div>
+        <table class="ex-table" style="margin-top:12px">
+          <tr class="ex-row">
+            <td>A</td>
+            <td>
+              <div class="ex-name-cell">Rowing Machine<span class="machine">rower</span></div>
+              <div class="ex-detail-cell">Best HIIT machine for you — works BACK, legs, arms simultaneously. Every sprint is also back training.</div>
+              <div class="ex-note-cell">Lean back slightly at finish, drive with legs first then pull</div>
+            </td>
+            <td class="ex-sets">8 rounds</td>
+          </tr>
+          <tr class="ex-row">
+            <td>B</td>
+            <td>
+              <div class="ex-name-cell">Stationary Bike Sprint<span class="machine">bike</span></div>
+              <div class="ex-detail-cell">High resistance, full sprint. Lower body dominant — legs are your biggest muscles = maximum calorie burn</div>
+            </td>
+            <td class="ex-sets">6 rounds</td>
+          </tr>
+          <tr class="ex-row">
+            <td>C</td>
+            <td>
+              <div class="ex-name-cell">Treadmill Sprint Intervals<span class="machine">treadmill</span></div>
+              <div class="ex-detail-cell">Incline 5–8%, alternate fast walk / jog sprint. Or flat ground running if comfortable.</div>
+            </td>
+            <td class="ex-sets">6 rounds</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#6b3fa0;opacity:0.5"></div>
+          <div class="phase-title">Phase 3 — Quick Back Activation (15 min)</div>
+        </div>
+        <table class="ex-table">
+          <tr class="ex-row back-row">
+            <td>01</td>
+            <td><div class="ex-name-cell">Hyperextensions<span class="machine">machine</span></div><div class="ex-detail-cell">Light, controlled — reinforce lower back every session</div></td>
+            <td class="ex-sets">3×12</td>
+          </tr>
+          <tr class="ex-row back-row">
+            <td>02</td>
+            <td><div class="ex-name-cell">Face Pulls<span class="machine">cable</span></div><div class="ex-detail-cell">Posture correction — do these every session you can</div></td>
+            <td class="ex-sets">3×15</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#1a7a6e"></div>
+          <div class="phase-title">Phase 4 — Core Circuit on Mat (30 min) · 3 Rounds</div>
+        </div>
+        <table class="ex-table">
+          <tr class="ex-row"><td>01</td><td class="ex-name-cell">Hanging Knee Raises<span class="machine">bar</span></td><td class="ex-detail-cell">Hang from pullup bar, raise knees to chest. Also builds grip + trains you toward future pull-ups.</td><td class="ex-sets">3×12</td></tr>
+          <tr class="ex-row"><td>02</td><td class="ex-name-cell">Cable Crunch<span class="machine">cable</span></td><td class="ex-detail-cell">Kneel, pull cable down, crunch through abs — weighted abs work better than plain crunches</td><td class="ex-sets">3×15</td></tr>
+          <tr class="ex-row"><td>03</td><td class="ex-name-cell">Plank Hold</td><td class="ex-detail-cell">Flat back, engage core fully. Also strengthens spinal stabilisers.</td><td class="ex-sets">3×60 sec</td></tr>
+          <tr class="ex-row"><td>04</td><td class="ex-name-cell">Bicycle Crunches</td><td class="ex-detail-cell">Slow and controlled — obliques + rectus abdominis</td><td class="ex-sets">3×25</td></tr>
+          <tr class="ex-row back-row"><td>05</td><td><div class="ex-name-cell">Bird Dog</div><div class="ex-detail-cell">Opposite arm + leg extended, hold 3 sec. Brilliant lower back stabiliser — physical therapists love this one.</div></td><td class="ex-sets">3×10 each</td></tr>
+          <tr class="ex-row"><td>06</td><td class="ex-name-cell">Dead Bug</td><td class="ex-detail-cell">Back flat to floor, slow extensions. Spinal stability + core coordination</td><td class="ex-sets">3×10 each</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== WEDNESDAY ===== -->
+  <div class="day-card back-day" onclick="toggle(this)">
+    <div class="day-header">
+      <div class="day-num">03</div>
+      <div class="day-info">
+        <div class="day-name">Wednesday — Back + Legs (Double Priority)</div>
+        <div class="day-sub">Full back session · Heavy lower body · Most calorie-burning day</div>
+      </div>
+      <span class="day-tag tag-back">Back + Legs</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="infobox back" style="margin-bottom:16px">
+        <strong>Biggest session of the week.</strong> Back + legs together = maximum muscle mass worked = maximum calorie burn. This is your most important gym day for both fat loss AND fixing your back weakness.
+      </div>
+
+      <div class="time-bar-wrap">
+        <div class="time-bar">
+          <div class="tb-seg" style="background:#d94f1e;flex:0.1"></div>
+          <div class="tb-seg" style="background:#6b3fa0;flex:0.4"></div>
+          <div class="tb-seg" style="background:#d94f1e;opacity:0.6;flex:0.35"></div>
+          <div class="tb-seg" style="background:#c49a2b;flex:0.15"></div>
+        </div>
+        <div class="time-labels">
+          <div class="tl"><div class="tl-dot" style="background:#d94f1e"></div>Warmup 15min</div>
+          <div class="tl"><div class="tl-dot" style="background:#6b3fa0"></div>Full Back 50min</div>
+          <div class="tl"><div class="tl-dot" style="background:#d94f1e;opacity:0.6"></div>Legs 40min</div>
+          <div class="tl"><div class="tl-dot" style="background:#c49a2b"></div>Cooldown 15min</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#6b3fa0"></div>
+          <div class="phase-title">Phase 2 — Full Back Session (50 min)</div>
+        </div>
+        <table class="ex-table">
+          <tr class="ex-row back-row">
+            <td>01</td>
+            <td>
+              <div class="ex-name-cell">Deadlift — Romanian Style<span class="machine">barbell</span></div>
+              <div class="ex-detail-cell">Week 1–3: empty bar or 20kg max. Learn the hinge. Add weight only when form is perfect. Most powerful lower back builder in existence.</div>
+              <div class="ex-note-cell">This will fix your lower back weakness if done consistently</div>
+            </td>
+            <td class="ex-sets">4×8 light</td>
+          </tr>
+          <tr class="ex-row back-row">
+            <td>02</td>
+            <td>
+              <div class="ex-name-cell">T-Bar Row<span class="machine">machine</span></div>
+              <div class="ex-detail-cell">Chest on pad, pull handles — intense mid-back builder</div>
+            </td>
+            <td class="ex-sets">4×10</td>
+          </tr>
+          <tr class="ex-row back-row">
+            <td>03</td>
+            <td>
+              <div class="ex-name-cell">Lat Pulldown — Underhand Grip<span class="machine">cable</span></div>
+              <div class="ex-detail-cell">Supinated grip (palms facing you) — hits lower lats + biceps more</div>
+            </td>
+            <td class="ex-sets">3×12</td>
+          </tr>
+          <tr class="ex-row back-row">
+            <td>04</td>
+            <td>
+              <div class="ex-name-cell">Hyperextension<span class="machine">machine</span></div>
+              <div class="ex-detail-cell">Same as Monday — repeat every back day without fail</div>
+            </td>
+            <td class="ex-sets">4×15</td>
+          </tr>
+          <tr class="ex-row back-row">
+            <td>05</td>
+            <td>
+              <div class="ex-name-cell">Seated Cable Row — Close Grip<span class="machine">cable</span></div>
+              <div class="ex-detail-cell">V-bar handle — hits middle back / rhomboids / lower traps</div>
+            </td>
+            <td class="ex-sets">3×12</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#d94f1e;opacity:0.6"></div>
+          <div class="phase-title">Phase 3 — Leg Circuit (40 min) · Machines + Free Weights</div>
+        </div>
+        <div class="infobox fire">
+          <strong>Leg training = fastest fat loss.</strong> Your quads, hamstrings, and glutes are your three biggest muscle groups. Training them hard burns 40–60% more calories than upper body sessions and elevates metabolism for hours after.
+        </div>
+        <table class="ex-table" style="margin-top:12px">
+          <tr class="ex-row">
+            <td>01</td>
+            <td><div class="ex-name-cell">Leg Press<span class="machine">machine</span></div><div class="ex-detail-cell">Wide foot placement — quad + glute dominant. Full range, don't lock knees at top.</div></td>
+            <td class="ex-sets">4×15</td>
+          </tr>
+          <tr class="ex-row">
+            <td>02</td>
+            <td><div class="ex-name-cell">Leg Curl<span class="machine">machine</span></div><div class="ex-detail-cell">Hamstring isolation — directly supports lower back health</div></td>
+            <td class="ex-sets">3×12</td>
+          </tr>
+          <tr class="ex-row">
+            <td>03</td>
+            <td><div class="ex-name-cell">Goblet Squat<span class="machine">dumbbell</span></div><div class="ex-detail-cell">Hold dumbbell to chest, squat deep — safer than barbell, great for beginners</div></td>
+            <td class="ex-sets">3×15</td>
+          </tr>
+          <tr class="ex-row">
+            <td>04</td>
+            <td><div class="ex-name-cell">Walking Lunges</td><div class="ex-detail-cell">Down the gym floor and back — total leg + cardio combined</div></td>
+            <td class="ex-sets">3×20 total</td>
+          </tr>
+          <tr class="ex-row">
+            <td>05</td>
+            <td><div class="ex-name-cell">Calf Raises on Machine<span class="machine">machine</span></div><div class="ex-detail-cell">Slow up, slow down, full range</div></td>
+            <td class="ex-sets">3×20</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#c49a2b"></div>
+          <div class="phase-title">Phase 4 — Stretch & Cooldown (15 min)</div>
+        </div>
+        <table class="ex-table">
+          <tr class="ex-row"><td>01</td><td class="ex-name-cell">Child's Pose</td><td class="ex-detail-cell">Decompress spine after all that loading — non-negotiable after back+leg day</td><td class="ex-sets">2 min</td></tr>
+          <tr class="ex-row"><td>02</td><td class="ex-name-cell">Pigeon Pose / Hip Flexor Stretch</td><td class="ex-detail-cell">Tight hips = lower back pain. Stretch daily.</td><td class="ex-sets">90 sec each</td></tr>
+          <tr class="ex-row"><td>03</td><td class="ex-name-cell">Supine Hamstring Stretch</td><td class="ex-detail-cell">Lie on back, pull leg to chest</td><td class="ex-sets">60 sec each</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== THURSDAY ===== -->
+  <div class="day-card" onclick="toggle(this)">
+    <div class="day-header">
+      <div class="day-num">04</div>
+      <div class="day-info">
+        <div class="day-name">Thursday — Full Body Circuit + HIIT Finisher</div>
+        <div class="day-sub">High volume · Compound movements · Metabolic circuit</div>
+      </div>
+      <span class="day-tag tag-teal">Circuit</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="time-bar-wrap">
+        <div class="time-bar">
+          <div class="tb-seg" style="background:#d94f1e;flex:0.1"></div>
+          <div class="tb-seg" style="background:#6b3fa0;flex:0.15"></div>
+          <div class="tb-seg" style="background:#1a7a6e;flex:0.5"></div>
+          <div class="tb-seg" style="background:#d94f1e;opacity:0.7;flex:0.15"></div>
+          <div class="tb-seg" style="background:#c49a2b;flex:0.1"></div>
+        </div>
+        <div class="time-labels">
+          <div class="tl"><div class="tl-dot" style="background:#d94f1e"></div>Warmup 10min</div>
+          <div class="tl"><div class="tl-dot" style="background:#6b3fa0"></div>Back Activation 20min</div>
+          <div class="tl"><div class="tl-dot" style="background:#1a7a6e"></div>Full-Body Circuit 60min</div>
+          <div class="tl"><div class="tl-dot" style="background:#d94f1e;opacity:0.7"></div>HIIT 20min</div>
+          <div class="tl"><div class="tl-dot" style="background:#c49a2b"></div>Cooldown 10min</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#6b3fa0"></div>
+          <div class="phase-title">Phase 2 — Back Activation (20 min) — Every. Single. Session.</div>
+        </div>
+        <table class="ex-table">
+          <tr class="ex-row back-row"><td>01</td><td class="ex-name-cell">Hyperextensions<span class="machine">machine</span></td><td class="ex-detail-cell">Your daily back ritual — don't skip this</td><td class="ex-sets">3×12</td></tr>
+          <tr class="ex-row back-row"><td>02</td><td class="ex-name-cell">Face Pulls<span class="machine">cable</span></td><td class="ex-detail-cell">Posture + rear delts</td><td class="ex-sets">3×15</td></tr>
+          <tr class="ex-row back-row"><td>03</td><td class="ex-name-cell">Bird Dog on Mat</td><td class="ex-detail-cell">Lower back stability — 3 sec holds each</td><td class="ex-sets">2×10 each</td></tr>
+        </table>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#1a7a6e"></div>
+          <div class="phase-title">Phase 3 — Full Body Circuit (60 min) · 4 Rounds · 45 sec rest between exercises</div>
+        </div>
+        <table class="ex-table">
+          <tr class="ex-row"><td>01</td><td class="ex-name-cell">Goblet Squat<span class="machine">dumbbell</span></td><td class="ex-detail-cell">Heavyweight, deep squat</td><td class="ex-sets">4×15</td></tr>
+          <tr class="ex-row"><td>02</td><td class="ex-name-cell">Dumbbell Chest Press<span class="machine">dumbbell</span></td><td class="ex-detail-cell">Chest is your strength — use it for calorie burn</td><td class="ex-sets">4×12</td></tr>
+          <tr class="ex-row back-row"><td>03</td><td><div class="ex-name-cell">Lat Pulldown<span class="machine">cable</span></div><div class="ex-detail-cell">Back — keeps you pulling as hard as you push</div></td><td class="ex-sets">4×12</td></tr>
+          <tr class="ex-row"><td>04</td><td class="ex-name-cell">Dumbbell Shoulder Press<span class="machine">dumbbell</span></td><td class="ex-detail-cell">Overhead press — burns a lot, hits shoulders + triceps</td><td class="ex-sets">3×12</td></tr>
+          <tr class="ex-row"><td>05</td><td class="ex-name-cell">Leg Press<span class="machine">machine</span></td><td class="ex-detail-cell">High reps, moderate weight for metabolic effect</td><td class="ex-sets">3×20</td></tr>
+          <tr class="ex-row back-row"><td>06</td><td><div class="ex-name-cell">Seated Cable Row<span class="machine">cable</span></div><div class="ex-detail-cell">Mid-back — finish every round with a pull</div></td><td class="ex-sets">3×12</td></tr>
+          <tr class="ex-row"><td>07</td><td class="ex-name-cell">Tricep Pushdown<span class="machine">cable</span></td><td class="ex-detail-cell">Arms — quick finisher each round</td><td class="ex-sets">3×15</td></tr>
+          <tr class="ex-row"><td>08</td><td class="ex-name-cell">Incline Treadmill Walk Between Rounds<span class="machine">treadmill</span></td><td class="ex-detail-cell">5 min brisk incline walk between each circuit round — keeps heart rate elevated</td><td class="ex-sets">3×5 min</td></tr>
+        </table>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#d94f1e;opacity:0.7"></div>
+          <div class="phase-title">Phase 4 — HIIT Finisher (20 min)</div>
+        </div>
+        <table class="ex-table">
+          <tr class="ex-row">
+            <td>01</td>
+            <td>
+              <div class="ex-name-cell">Rowing Machine Intervals<span class="machine">rower</span></div>
+              <div class="ex-detail-cell">20 sec max → 40 sec easy × 15 rounds. End of session rowing = back training + cardio in one. Perfect.</div>
+            </td>
+            <td class="ex-sets">15 rounds</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FRIDAY ===== -->
+  <div class="day-card" onclick="toggle(this)">
+    <div class="day-header">
+      <div class="day-num">05</div>
+      <div class="day-info">
+        <div class="day-name">Friday — Upper Body + Long Cardio Finisher</div>
+        <div class="day-sub">Chest · Shoulders · Arms · Back maintenance · 40 min cardio to close the week</div>
+      </div>
+      <span class="day-tag tag-gold">Upper + Cardio</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="time-bar-wrap">
+        <div class="time-bar">
+          <div class="tb-seg" style="background:#d94f1e;flex:0.1"></div>
+          <div class="tb-seg" style="background:#6b3fa0;flex:0.1"></div>
+          <div class="tb-seg" style="background:#c49a2b;flex:0.4"></div>
+          <div class="tb-seg" style="background:#1a7a6e;flex:0.3"></div>
+          <div class="tb-seg" style="background:#c49a2b;flex:0.1"></div>
+        </div>
+        <div class="time-labels">
+          <div class="tl"><div class="tl-dot" style="background:#d94f1e"></div>Warmup 10min</div>
+          <div class="tl"><div class="tl-dot" style="background:#6b3fa0"></div>Back Activation 15min</div>
+          <div class="tl"><div class="tl-dot" style="background:#c49a2b"></div>Upper Body 45min</div>
+          <div class="tl"><div class="tl-dot" style="background:#1a7a6e"></div>Cardio 40min</div>
+          <div class="tl"><div class="tl-dot" style="background:#c49a2b;opacity:0.5"></div>Cooldown 10min</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#6b3fa0"></div>
+          <div class="phase-title">Phase 2 — Back Activation (15 min) — Never Skip</div>
+        </div>
+        <table class="ex-table">
+          <tr class="ex-row back-row"><td>01</td><td class="ex-name-cell">Hyperextensions<span class="machine">machine</span></td><td class="ex-detail-cell">3 sets — this is your daily ritual</td><td class="ex-sets">3×12</td></tr>
+          <tr class="ex-row back-row"><td>02</td><td class="ex-name-cell">Face Pulls<span class="machine">cable</span></td><td class="ex-detail-cell">Protect rotator cuffs before upper body pressing</td><td class="ex-sets">3×15</td></tr>
+        </table>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#c49a2b"></div>
+          <div class="phase-title">Phase 3 — Upper Body Push + Pull (45 min)</div>
+        </div>
+        <div class="infobox teal">
+          <strong>Push-Pull balance is critical.</strong> Your chest is strong — don't overtrain it. Match every push with a pull to keep shoulders healthy and posture upright. This also trains your back twice every upper body session.
+        </div>
+        <table class="ex-table" style="margin-top:12px">
+          <tr class="ex-row"><td>01</td><td class="ex-name-cell">Incline Dumbbell Press<span class="machine">dumbbell</span></td><td class="ex-detail-cell">Upper chest emphasis. Use your strength here — but don't max out.</td><td class="ex-sets">3×12</td></tr>
+          <tr class="ex-row back-row"><td>02</td><td><div class="ex-name-cell">Assisted Pullup / Lat Pulldown<span class="machine">machine/cable</span></div><div class="ex-detail-cell">Superset with chest press — alternate with no rest between</div></td><td class="ex-sets">3×10</td></tr>
+          <tr class="ex-row"><td>03</td><td class="ex-name-cell">Cable Fly<span class="machine">cable</span></td><td class="ex-detail-cell">Chest isolation — light and controlled</td><td class="ex-sets">3×15</td></tr>
+          <tr class="ex-row back-row"><td>04</td><td><div class="ex-name-cell">One-Arm Dumbbell Row<span class="machine">dumbbell</span></div><div class="ex-detail-cell">Each arm — mid-back depth</div></td><td class="ex-sets">3×12 each</td></tr>
+          <tr class="ex-row"><td>05</td><td class="ex-name-cell">Dumbbell Lateral Raise<span class="machine">dumbbell</span></td><td class="ex-detail-cell">Light weight, control the movement — shoulder width</td><td class="ex-sets">3×15</td></tr>
+          <tr class="ex-row"><td>06</td><td class="ex-name-cell">Tricep Dips (Bench)<span class="machine">bench</span></td><td class="ex-detail-cell">Controlled dips — triceps + chest secondary</td><td class="ex-sets">3×15</td></tr>
+          <tr class="ex-row"><td>07</td><td class="ex-name-cell">Hammer Curl<span class="machine">dumbbell</span></td><td class="ex-detail-cell">Bicep finisher — these help pullup strength</td><td class="ex-sets">3×12</td></tr>
+        </table>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot" style="background:#1a7a6e"></div>
+          <div class="phase-title">Phase 4 — Long Cardio Finisher (40 min)</div>
+        </div>
+        <div class="infobox teal">
+          <strong>Friday cardio is your biggest fat burner of the week.</strong> After 5 days of training, your glycogen stores are partially depleted. 40 minutes of steady cardio now = your body tapping fat reserves almost immediately.
+        </div>
+        <table class="ex-table" style="margin-top:12px">
+          <tr class="ex-row">
+            <td>01</td>
+            <td>
+              <div class="ex-name-cell">Treadmill Incline Walk or Elliptical<span class="machine">machine</span></div>
+              <div class="ex-detail-cell">Heart rate 130–145 bpm — fat oxidation zone. Podcast or music. This is your reward for a full week's work.</div>
+            </td>
+            <td class="ex-sets">40 min</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEKEND -->
+  <div class="sec-head"><h2>Weekend</h2><div class="sec-line"></div></div>
+  <div class="weekend-grid">
+    <div class="wknd-card">
+      <div class="wknd-day">Saturday</div>
+      <div class="wknd-sub">Active Recovery / Sport</div>
+      <div class="wknd-item"><div class="wknd-dot"></div><div class="wknd-text"><strong>Badminton 1–1.5 hrs</strong> — cardio + footwork + fun. 400–600 kcal. Best option.</div></div>
+      <div class="wknd-item"><div class="wknd-dot"></div><div class="wknd-text"><strong>OR</strong> 45 min jog outdoors if no partner available</div></div>
+      <div class="wknd-item"><div class="wknd-dot"></div><div class="wknd-text"><strong>Evening:</strong> Light 20 min walk after dinner — digestion + extra burn</div></div>
+      <div class="wknd-item"><div class="wknd-dot"></div><div class="wknd-text"><strong>Back bonus:</strong> 3×12 hyperextensions at gym or 3×10 bird dogs at home — keep the back work daily</div></div>
+    </div>
+    <div class="wknd-card">
+      <div class="wknd-day">Sunday</div>
+      <div class="wknd-sub">Full Rest + Prep</div>
+      <div class="wknd-item"><div class="wknd-dot"></div><div class="wknd-text"><strong>Long walk 45 min</strong> — morning, low effort, refreshes the body</div></div>
+      <div class="wknd-item"><div class="wknd-dot"></div><div class="wknd-text"><strong>OR Badminton</strong> if Saturday was rest</div></div>
+      <div class="wknd-item"><div class="wknd-dot"></div><div class="wknd-text"><strong>Hip flexor + spine stretch</strong> 20 min — keeps lower back loose entering new week</div></div>
+      <div class="wknd-item"><div class="wknd-dot"></div><div class="wknd-text"><strong>Meal prep:</strong> Boil 14 eggs for the week — no excuses for missing protein</div></div>
+      <div class="wknd-item"><div class="wknd-dot"></div><div class="wknd-text"><strong>Sleep 8 hrs.</strong> Fat is lost during sleep. Non-negotiable.</div></div>
+    </div>
+  </div>
+
+  <!-- NUTRITION -->
+  <div class="sec-head"><h2>Nutrition</h2><div class="sec-line"></div></div>
+  <div class="nut-grid">
+    <div class="nut-card">
+      <div class="nut-title">Daily Targets</div>
+      <div class="nut-row"><span class="nut-label">Calories</span><span class="nut-val">1800–2000 kcal</span></div>
+      <div class="nut-row"><span class="nut-label">Protein</span><span class="nut-val">~100g/day</span></div>
+      <div class="nut-row"><span class="nut-label">Water</span><span class="nut-val">3–4 L/day</span></div>
+      <div class="nut-row"><span class="nut-label">Pre-workout</span><span class="nut-val">2 eggs + light</span></div>
+    </div>
+    <div class="nut-card">
+      <div class="nut-title">Egg Protocol</div>
+      <div class="nut-row"><span class="nut-label">Morning (planned)</span><span class="nut-val">3 eggs = 18g</span></div>
+      <div class="nut-row"><span class="nut-label">Company lunch</span><span class="nut-val">~20–40g</span></div>
+      <div class="nut-row"><span class="nut-label">Evening (planned)</span><span class="nut-val">2 eggs = 12g</span></div>
+      <div class="nut-row"><span class="nut-label">Total daily est.</span><span class="nut-val">~70–90g ✓</span></div>
+    </div>
+    <div class="nut-card">
+      <div class="nut-title">Quick Wins</div>
+      <div class="nut-row"><span class="nut-label">Skip rice at dinner</span><span class="nut-val">–250 kcal/day</span></div>
+      <div class="nut-row"><span class="nut-label">Water before meals</span><span class="nut-val">Eat ~20% less</span></div>
+      <div class="nut-row"><span class="nut-label">Stop eating after 9pm</span><span class="nut-val">Big impact</span></div>
+      <div class="nut-row"><span class="nut-label">Will you bulk up?</span><span class="nut-val">NO — deficit = no bulk</span></div>
+    </div>
+  </div>
+
+  <!-- MILESTONES -->
+  <div class="sec-head"><h2>Progress Timeline</h2><div class="sec-line"></div></div>
+  <div style="background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:20px 24px;">
+    <div class="milestone">
+      <div class="ms-time">Week 1–2</div>
+      <div class="ms-text"><strong>Adaptation.</strong> Soreness, especially legs and back. Normal. Drop 1–2kg (water weight). Learn RDL form with empty bar. Hyperextensions daily.</div>
+    </div>
+    <div class="milestone">
+      <div class="ms-time">Week 3–4</div>
+      <div class="ms-text"><strong>Lower back noticeably stronger.</strong> Real fat loss starts: 0.5–1kg/week. You'll notice less back fatigue. Pullups improving on assisted machine.</div>
+    </div>
+    <div class="milestone">
+      <div class="ms-time">Month 2</div>
+      <div class="ms-text"><strong>~4kg down.</strong> Clothes fit differently. Back no longer a weakness — it's becoming a strength. Start adding weight to RDL and cable rows.</div>
+    </div>
+    <div class="milestone">
+      <div class="ms-time">Month 3</div>
+      <div class="ms-text"><strong>~7kg down. 84kg range.</strong> Visible body change. Posture visibly improved from all the back work. Start attempting full unassisted pullups.</div>
+    </div>
+    <div class="milestone">
+      <div class="ms-time">Month 4–5</div>
+      <div class="ms-text"><strong>~12–14kg down. ~77–79kg range.</strong> Athletic, lean look emerging. Back is one of your strong points now. Begin introducing calisthenics fundamentals — you're ready.</div>
+    </div>
+    <div class="milestone">
+      <div class="ms-time">Month 6+</div>
+      <div class="ms-text"><strong>75kg target range.</strong> Transition to calisthenics-focused training. Your gym base makes you far better prepared for pullups, dips, L-sits, and eventually gymnastic movements than you'd be without it.</div>
+    </div>
+  </div>
+
+  <footer>
+    <span>GYM SHRED PROTOCOL · 91→75KG · BACK PRIORITY</span>
+    <span>MON–FRI 2HRS · SAT SPORT · SUN REST</span>
+  </footer>
+</div>
+
+<script>
+  function toggle(card) {
+    if (event.target.closest('table') || event.target.closest('.infobox')) return;
+    card.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
